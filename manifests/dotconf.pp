@@ -82,7 +82,18 @@ define apache::dotconf (
             require => Package['apache'],
           }
         }
-        default: { }
+        default: { 
+          $dotconf_link_ensure = $enable ? {
+            true  => $dotconf_path,
+            false => absent,
+          }
+
+          file { "ApacheDotconfEnabled_${name}":
+            ensure  => $dotconf_link_ensure,
+            path    => $dotconf_enable_path,
+            require => Package['apache'],
+          }
+        }
       }
     }
     /(?i:Debian)/ : {

@@ -316,7 +316,7 @@ class apache (
           $dotconf_dir = "${apache::config_dir}/conf-available"
         }
         default: {
-          $dotconf_dir = "${apache::config_dir}/conf.d"
+          $dotconf_dir = "${apache::config_dir}/conf-available"
         }
       }
     }
